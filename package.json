@@ -1,0 +1,27 @@
+{
+  "name": "sse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "next",
+    "start-server": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "cors": "^2.8.5",
+    "eslint": "^5.16.0",
+    "eventsource": "^1.0.7",
+    "express": "^4.16.4",
+    "midi": "^0.9.5",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "serve-static": "^1.13.2",
+    "ssestream": "^1.0.1"
+  }
+}
