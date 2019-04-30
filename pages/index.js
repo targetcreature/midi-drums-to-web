@@ -1,5 +1,25 @@
 import { useState, useEffect } from "react"
 import EventSource from "eventsource"
+import styled from "styled-components"
+import Head from "../comps/Head"
+
+const Box = styled.div`
+    position:absolute;
+    width: 100vw;
+    height: 100vh;
+    background: ${(props) => getBG(props.drum.pad)};
+    opacity: ${(props) => 1 - (props.drum.count * .18)};
+`
+const getBG = (pad) => {
+    const colors = {
+        snare: "red",
+        crash: "orange",
+        ride: "yellow",
+        tom2: "green",
+        tom3: "blue"
+    }
+    return colors[pad] || "red"
+}
 
 const Index = () => {
 
@@ -18,11 +38,15 @@ const Index = () => {
     })
 
     return (
-        <div>
-            {
-                Object.keys(drum).map((d) => <p key={d}>{d}: {drum[d]}</p>)
-            }
-        </div>
+        <>
+            <Head />
+            <Box drum={drum} />
+            <div>
+                {
+                    Object.keys(drum).map((d) => <div key={d}>{d}: {drum[d]}</div>)
+                }
+            </div>
+        </>
     )
 }
 

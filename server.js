@@ -34,8 +34,6 @@ app.get("/drums", (req, res) => {
 
         let pad = filter(input, last, delta)
 
-        console.log(pad)
-
         if(pad){
             count = last === pad ? count+1 : 1
             last = pad
