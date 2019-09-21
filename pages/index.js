@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import EventSource from "eventsource"
 import styled from "styled-components"
 import Head from "../comps/Head"
+import ReactPlayer from "react-player"
+// import video from "../static/video.mp4"
 
 const Box = styled.div`
     position:absolute;
@@ -25,6 +27,7 @@ const Index = () => {
 
     const [init, setInit] = useState(false)
     const [drum, setDrum] = useState({ pad: "None", vel: 0, count: 0 })
+    const player = useRef(null)
 
     useEffect(() => {
         if (!init) {
@@ -35,17 +38,33 @@ const Index = () => {
                 setDrum(data)
             })
         }
-    })
+    }, [])
+
+    useEffect(() => {
+
+        const {pad} = drum
+
+        const marks = {
+            snare: 144,
+            crash: 6,
+            ride: 15,
+            tom2: 208,
+            tom3: 99
+        }
+
+        player.current.seekTo(marks[pad] || 144)
+
+    }, [drum])
+
 
     return (
         <>
             <Head />
-            <Box drum={drum} />
-            <div>
-                {
-                    Object.keys(drum).map((d) => <div key={d}>{d}: {drum[d]}</div>)
-                }
-            </div>
+            <ReactPlayer
+                url="/static/video.mp4"
+                ref={player}
+                // playing
+            />
         </>
     )
 }
